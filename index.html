@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرام - داروهای گیاهی</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header input {
+            padding: 10px;
+            margin-top: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .plants-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .plant-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .plant-card h3 {
+            color: #4CAF50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>پرام - داروهای گیاهی</h1>
+        <input type="text" id="searchBar" placeholder="جستجو کنید..." onkeyup="searchPlants()">
+    </header>
+
+    <div class="content">
+        <div class="plants-list" id="plantsList">
+            <!-- فهرست گیاهان دارویی به اینجا اضافه می‌شود -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 پرام. تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script>
+        const plants = [
+            { name: 'آویشن', properties: 'ضد باکتری، ضد ویروس، ضد التهاب، تقویت سیستم ایمنی' },
+            { name: 'بابونه', properties: 'آرام‌بخش، ضد التهاب، ضد اضطراب، بهبود مشکلات گوارشی' },
+            { name: 'زنجبیل', properties: 'ضد تهوع، ضد التهاب، بهبود دردهای مفصلی، تقویت سیستم ایمنی' },
+            { name: 'گلابی', properties: 'ضد التهاب، آرام‌بخش، تسکین‌دهنده، کمک به بهبود پوست' },
+            { name: 'نعناع', properties: 'تسکین دردهای معده و گوارش، آرام‌بخش، ضد میکروب و ضد التهاب' },
+            { name: 'زردچوبه', properties: 'ضد التهاب، آنتی‌اکسیدان قوی، تقویت سیستم ایمنی، بهبود مفاصل' },
+            { name: 'بابا آدم', properties: 'تقویت پوست، کاهش التهابات پوستی، دیورتیک طبیعی، سم‌زدایی' },
+            { name: 'چای سبز', properties: 'آنتی‌اکسیدان قوی، کمک به کاهش وزن، ضد سرطان، تقویت سیستم ایمنی' },
+            { name: 'گل گاو زبان', properties: 'آرام‌بخش، ضد التهاب، کاهش استرس، تقویت روحیه' },
+            { name: 'کدو حلوایی', properties: 'تقویت سیستم ایمنی، بهبود سلامت پروستات، تسکین مشکلات گوارشی' },
+            { name: 'خار مریم', properties: 'محافظت از کبد، سم‌زدایی، ضد التهاب، بهبود سلامت پوست' },
+            // ... ادامه داروهای گیاهی دیگر
+        ];
+
+        function displayPlants(plantsList) {
+            const plantsContainer = document.getElementById('plantsList');
+            plantsContainer.innerHTML = '';
+            plantsList.forEach(plant => {
+                const plantCard = document.createElement('div');
+                plantCard.classList.add('plant-card');
+                plantCard.innerHTML = `
+                    <h3>${plant.name}</h3>
+                    <p>${plant.properties}</p>
+                `;
+                plantsContainer.appendChild(plantCard);
+            });
+        }
+
+        function searchPlants() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const filteredPlants = plants.filter(plant => plant.name.toLowerCase().includes(searchQuery) || plant.properties.toLowerCase().includes(searchQuery));
+            displayPlants(filteredPlants);
+        }
+
+        // بارگذاری اولیه لیست گیاهان
+        displayPlants(plants);
+    </script>
+</body>
+</html>
